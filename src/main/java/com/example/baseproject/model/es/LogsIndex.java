@@ -2,11 +2,14 @@ package com.example.baseproject.model.es;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
 /**
  * Created by dongyaofeng on 2017/12/24.
+ *
+ * 创建带结构的索引
  */
 
 @Document(indexName = "logs", type = "log", shards = 5, replicas = 1, indexStoreType = "fs", refreshInterval = "-1")
@@ -24,6 +27,7 @@ public class LogsIndex {
     @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)
     private String text;
 
+    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
     @Field(index = FieldIndex.not_analyzed, /*analyzer = "ik",*/ store = true, type = FieldType.Date)
     private Date createTime;
 
