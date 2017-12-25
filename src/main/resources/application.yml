@@ -1,9 +1,13 @@
+plugins:
+  es: true
+  resid: true
+
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://127.0.0.1:3306/demo
+    url: jdbc:mysql://127.0.0.1:3306/baseproject
     username: root
-    password: root
+    password: admin
     type:  com.alibaba.druid.pool.DruidDataSource  #默认使用TomcatJDBD DataSource
   jpa:
     hibernate:
@@ -14,7 +18,12 @@ spring:
     elasticsearch:
       cluster-name: elasticsearch
       cluster-nodes: 127.0.0.1:9300
-      properties:
-        path:
-          logs: ./elasticsearch/log
-          data: ./elasticsearch/data
+#      properties:
+#        path:
+#          logs: ./elasticsearch/log
+#          data: ./elasticsearch/data
+
+  redis:  #单机版
+    port: 6379
+    host: 127.0.0.1
+    database: 0
