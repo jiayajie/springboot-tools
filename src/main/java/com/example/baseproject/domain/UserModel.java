@@ -1,4 +1,4 @@
-package com.example.baseproject.model;
+package com.example.baseproject.domain;
 
 /**
  * Created by dongyaofeng on 2017/12/24.

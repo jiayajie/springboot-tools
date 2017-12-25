@@ -1,19 +1,17 @@
-package com.example.baseproject.model.es;
+package com.example.baseproject.domain.es;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.io.Serializable;
 
 /**
  * Created by dongyaofeng on 2017/12/24.
- *
- * 创建带结构的索引
+ * 创建带
  */
 
 @Document(indexName = "logs", type = "log", shards = 5, replicas = 1, indexStoreType = "fs", refreshInterval = "-1")
-public class LogsIndex {
+public class LogsIndex implements Serializable {
 
     @Id
     private Long id;
@@ -27,9 +25,8 @@ public class LogsIndex {
     @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)
     private String text;
 
-    @DateTimeFormat( pattern = "yyyy-MM-dd HH:mm:ss" )
-    @Field(index = FieldIndex.not_analyzed, /*analyzer = "ik",*/ store = true, type = FieldType.Date)
-    private Date createTime;
+    @Field(index = FieldIndex.not_analyzed, format = DateFormat.custom, pattern = "yyyy-MM-dd HH:mm:ss", /*analyzer = "ik",*/ store = true, type = FieldType.Date)
+    private String createTime;
 
     @Field(index = FieldIndex.not_analyzed, store = true, type = FieldType.Integer)
     private Integer count;
@@ -72,11 +69,11 @@ public class LogsIndex {
         this.text = text;
     }
 
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 

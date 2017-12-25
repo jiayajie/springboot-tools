@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
- * 数据多数据源源配置  (Mysql)
+ * 多数据源源配置  (Mysql)
  */
 //@Configuration
 //@EnableJpaRepositories(basePackages = "com.example.baseproject.repostitory")  /*使用SpringData JPA*/
