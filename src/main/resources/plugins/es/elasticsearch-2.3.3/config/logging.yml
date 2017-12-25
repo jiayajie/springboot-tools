@@ -39,7 +39,7 @@ appender:
     type: console
     layout:
       type: consolePattern
-      conversionPattern: "[%d{ISO8601}][%-5p][%-25c] %m%n"
+      conversionPattern: "%m%n"
 
   file:
     type: dailyRollingFile
