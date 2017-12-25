@@ -4,6 +4,7 @@ spring:
     url: jdbc:mysql://127.0.0.1:3306/demo
     username: root
     password: root
+    type:  com.alibaba.druid.pool.DruidDataSource  #默认使用TomcatJDBD DataSource
   jpa:
     hibernate:
       ddl-auto: none
@@ -15,5 +16,5 @@ spring:
       cluster-nodes: 127.0.0.1:9300
       properties:
         path:
-          logs: ./elasticsearch/log #elasticsearch��־�洢Ŀ¼
-          data: ./elasticsearch/data #elasticsearch���ݴ洢Ŀ¼
+          logs: ./elasticsearch/log #elasticsearch��־�洢Ŀ¼
+          data: ./elasticsearch/data #elasticsearch���ݴ洢Ŀ¼

@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/12/25.
+ * Created by dongyaofeng on 2017/12/25.
  */
 @Service
 public class LogSerciveImpl implements LogSercive {

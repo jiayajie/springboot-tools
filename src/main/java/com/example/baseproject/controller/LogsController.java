@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * Created by Administrator on 2017/12/25.
+ * Created by dongyaofeng on 2017/12/25.
  */
 @RestController
 public class LogsController {

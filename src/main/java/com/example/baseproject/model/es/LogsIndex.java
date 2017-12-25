@@ -6,7 +6,7 @@ import org.springframework.data.elasticsearch.annotations.*;
 import java.util.Date;
 
 /**
- * Created by Administrator on 2017/12/24.
+ * Created by dongyaofeng on 2017/12/24.
  */
 
 @Document(indexName = "logs", type = "log", shards = 5, replicas = 1, indexStoreType = "fs", refreshInterval = "-1")
