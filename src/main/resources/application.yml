@@ -16,5 +16,5 @@ spring:
       cluster-nodes: 127.0.0.1:9300
       properties:
         path:
-          logs: ./elasticsearch/log #elasticsearch��־�洢Ŀ¼
-          data: ./elasticsearch/data #elasticsearch���ݴ洢Ŀ¼
+          logs: ./elasticsearch/log
+          data: ./elasticsearch/data
