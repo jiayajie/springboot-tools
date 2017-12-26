@@ -1,6 +1,7 @@
 package com.example.baseproject.service.impl;
 
 import com.example.baseproject.service.RedisTestService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,5 +13,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class RedisTestServiceImpl implements RedisTestService {
 
-
+    @Override
+    @Cacheable(value = "test")
+    public String test(String name) {
+        return "  helloworld !!! ";
+    }
 }

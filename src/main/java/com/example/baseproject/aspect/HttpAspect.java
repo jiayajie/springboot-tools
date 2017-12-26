@@ -1,15 +1,11 @@
 package com.example.baseproject.aspect;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -17,8 +13,6 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -39,7 +33,8 @@ public class HttpAspect {
 
     private static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
-    @Pointcut("execution(public * com.example.baseproject.controller.LogsController.*(..))")
+//    @Pointcut("execution(public * com.example.baseproject.controller.LogsController.*(..))")
+    @Pointcut("execution(public * com.example.baseproject.controller..*(..))")
     public void log() {
     }
 
@@ -50,24 +45,23 @@ public class HttpAspect {
 
         Map<String, String> httpMap = new HashMap();
         //url
-        logger.info("url={}", request.getRequestURL());
+//        logger.info("url={}", request.getRequestURL());
         httpMap.put("url", String.valueOf(request.getRequestURL()));
 
         //method
-        logger.info("method={}", request.getMethod());
+//        logger.info("method={}", request.getMethod());
         httpMap.put("method", request.getMethod());
 
         //ip
-        logger.info("ip={}", request.getRemoteAddr());
+//        logger.info("ip={}", request.getRemoteAddr());
         httpMap.put("ip", request.getRemoteAddr());
 
         //类方法
-        logger.info("class_method={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
+//        logger.info("class_method={}", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
         httpMap.put("method", joinPoint.getSignature().getDeclaringTypeName() + "." + joinPoint.getSignature().getName());
 
         //参数
-        logger.info("args={}", joinPoint.getArgs());
-
+//        logger.info("args={}", joinPoint.getArgs());
         httpMap.put("args", Arrays.toString(joinPoint.getArgs()));
 
         //缓存请求数据
@@ -75,7 +69,7 @@ public class HttpAspect {
 
     }
 
-    @After("log()")
+//    @After("log()")
     public void doAfter() {
         logger.info("doAfter");
     }
@@ -85,7 +79,7 @@ public class HttpAspect {
         logger.info("response={}", String.valueOf(object));
     }
 
-    @Around("log()")
+//    @Around("log()")
     public void doAround(ProceedingJoinPoint pjp) throws Throwable {
         logger.info("Around={}", "进入环绕通知");
         pjp.proceed();//执行该方法

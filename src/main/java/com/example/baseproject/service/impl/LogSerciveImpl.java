@@ -38,12 +38,12 @@ public class LogSerciveImpl implements LogSercive {
         LogsIndex logsIndex = new LogsIndex();
         logsIndex.setId(123l);
 //        logsIndex.setCount(100);
-        logsIndex.setTitle("这是标题3");
+//        logsIndex.setTitle("这是标题3");
 //        logsIndex.setCreateTime("2014-12-11 12:12:12");
 //        logsIndex.setEssence(true);
 //        logsIndex.setState(0);
 //        logsRepostitory.save(logsIndex);
-        LogsIndex index = logsRepostitory.index(logsIndex);
+//        LogsIndex index = logsRepostitory.index(logsIndex);
     }
 
 

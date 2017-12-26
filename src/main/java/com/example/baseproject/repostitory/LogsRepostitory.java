@@ -10,9 +10,9 @@ import java.util.List;
  */
 public interface LogsRepostitory extends ElasticsearchRepository<LogsIndex, Long> {
 
-    long countByTitle(String title);
+//    long countByTitle(String title);
 
-    List findByClickCountBetween(Long star, Long end);
+//    List findByClickCountBetween(Long star, Long end);
 
     /**
      * findByName
@@ -26,9 +26,9 @@ public interface LogsRepostitory extends ElasticsearchRepository<LogsIndex, Long
      * findByLastnameOrderByFirstnameAsc(String lastname);
      * https://docs.spring.io/spring-data/elasticsearch/docs/current/reference/html/   API 查看
      */
-    List<LogsIndex> findByKeywordIn(List<String> name);
+//    List<LogsIndex> findByKeywordIn(List<String> name);
 
     //关键字... ,或者 点击> * , 或者 描述.....
-    List<LogsIndex> findByKeywordAndClickCountBetweenOrderByIdDesc(String keyword, Long star, Long end);
+//    List<LogsIndex> findByKeywordAndClickCountBetweenOrderByIdDesc(String keyword, Long star, Long end);
 
 }
