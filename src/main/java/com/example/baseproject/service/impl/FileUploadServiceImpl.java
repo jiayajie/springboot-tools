@@ -4,6 +4,7 @@ import com.example.baseproject.service.FileUploadService;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -25,6 +26,13 @@ public class FileUploadServiceImpl implements FileUploadService {
                 continue; //next pls
             }
             byte[] bytes = file.getBytes();
+
+            //判断当前目录是否存在.不存在则自动创建.
+            File f = new File(UPLOADED_FOLDER);
+            if (!f.exists() && !f.isDirectory()) {
+                f.mkdirs();
+            }
+
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
             Files.write(path, bytes);
 
