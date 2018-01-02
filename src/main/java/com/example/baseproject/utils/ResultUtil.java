@@ -1,28 +1,57 @@
 package com.example.baseproject.utils;
 
 import com.example.baseproject.domain.ResultEntity;
+import com.sun.org.apache.regexp.internal.RE;
 
 /**
  * Created by Administrator on 2017/12/25.
- *  MVC 返回结果工具类
+ * MVC 返回结果工具类
  */
 public class ResultUtil {
+
+    /**
+     * 请求成功2
+     */
     public static ResultEntity success(Object object) {
         ResultEntity ResultEntity = new ResultEntity();
-        ResultEntity.setCode(0);
+        ResultEntity.setCode(200);
         ResultEntity.setMsg("success");
         ResultEntity.setData(object);
         return ResultEntity;
     }
 
+    /**
+     * 请求成功1
+     */
     public static ResultEntity success() {
         return success(null);
     }
 
+    /**
+     * 请求失败
+     */
     public static ResultEntity error(Integer code, String msg) {
-        ResultEntity ResultEntity = new ResultEntity();
-        ResultEntity.setCode(code);
-        ResultEntity.setMsg(msg);
-        return ResultEntity;
+        return new ResultEntity(code, msg);
+    }
+
+    /**
+     * PUT 操作 (返回更新的字段)
+     */
+    public static ResultEntity put(Object obj) {
+        return new ResultEntity(201, "success", obj);
+    }
+
+    /**
+     * DEL 操作
+     */
+    public static ResultEntity del() {
+        return new ResultEntity(204, "success");
+    }
+
+    /**
+     * POST 操作 (返回添加的字段)
+     */
+    public static ResultEntity post(Object obj) {
+        return new ResultEntity(201, "success", obj);
     }
 }

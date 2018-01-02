@@ -83,7 +83,7 @@ public class MailServiceImpl implements MailService {
             logger.info("用户:{} 邮件已发送 ", to);
         } catch (Exception e) {
             logger.error("用户:{} 邮件发送异常:{}", to, e.getMessage());
-            throw new AudienceException(ResultEnum.UNKONW_ERROR);
+            throw new AudienceException(ResultEnum.SERVER_ERROR);
         }
     }
 

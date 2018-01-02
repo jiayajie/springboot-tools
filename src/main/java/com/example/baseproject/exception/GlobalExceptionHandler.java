@@ -1,9 +1,11 @@
 package com.example.baseproject.exception;
 
 import com.example.baseproject.domain.ResultEntity;
+import com.example.baseproject.enums.ResultEnum;
 import com.example.baseproject.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,7 +33,7 @@ public class GlobalExceptionHandler {
             logger.error("[AudienceException]: {}", e);
             return ResultUtil.error(ep.getCode(), ep.getMessage());
         }
-        logger.error("[SysError]: {}", e);
-        return ResultUtil.error(-1, "系统异常:　" + e.getMessage());
+        logger.error("[SysError]={}", e);
+        return ResultUtil.error(ResultEnum.SERVER_ERROR.getCode(), "系统繁忙,请稍后再试");
     }
 }
