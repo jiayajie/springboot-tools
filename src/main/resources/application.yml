@@ -1,3 +1,4 @@
+#开启自定义插件支持
 plugins:
   es: false
   resid: false
