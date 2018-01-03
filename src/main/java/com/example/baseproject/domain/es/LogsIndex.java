@@ -7,16 +7,16 @@ import java.io.Serializable;
 
 /**
  * Created by dongyaofeng on 2017/12/24.
- * 创建带
+ * 创建带结构的索引
  */
 
-@Document(indexName = "logs", type = "log", shards = 5, replicas = 1, indexStoreType = "fs", refreshInterval = "-1")
+@Document(indexName = "logs", type = "log", shards = 5, replicas = 1)
 public class LogsIndex implements Serializable {
 
     @Id
     private Long id;
 
-    @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)
+    @Field(index = FieldIndex.analyzed,/* analyzer = "ik",*/ store = true, type = FieldType.String)
     private String title;
 
     @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)
