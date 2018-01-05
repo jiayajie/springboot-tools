@@ -3,6 +3,7 @@ package com.example.baseproject.controller;
 import com.example.baseproject.domain.ResultEntity;
 import com.example.baseproject.domain.UserModel;
 import com.example.baseproject.repostitory.UserRepostitory;
+import com.example.baseproject.service.UserService;
 import com.example.baseproject.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -14,15 +15,18 @@ import org.springframework.web.bind.annotation.*;
  * @date 2018/1/2 15:37
  */
 @RestController
-public class RestfulControllerTest {
+public class UserController {
 
     @Autowired
     /*为了方便直接注入 UserRepostitory*/
     private UserRepostitory userRepostitory;
 
+    @Autowired
+    private UserService userService;
+
     @PostMapping("users")
     public ResultEntity<UserModel> addUser(UserModel userModel) {
-        UserModel user = userRepostitory.save(userModel);
+        UserModel user = userService.addUser(userModel);
         return ResultUtil.post(user);
     }
 

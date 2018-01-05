@@ -97,7 +97,7 @@ public class DruidConfig {
         BeanNameAutoProxyCreator beanNameAutoProxyCreator = new BeanNameAutoProxyCreator();
         beanNameAutoProxyCreator.setProxyTargetClass(true);
         // 设置要监控的bean的id
-        beanNameAutoProxyCreator.setBeanNames("dataProductController", "domobDataServiceImpl", "domobDataRepositoryImpl");
+        beanNameAutoProxyCreator.setBeanNames("UserController", "TestController", "LogsController");
         beanNameAutoProxyCreator.setInterceptorNames("druid-stat-interceptor");
         return beanNameAutoProxyCreator;
     }

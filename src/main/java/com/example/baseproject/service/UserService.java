@@ -14,4 +14,6 @@ public interface UserService {
 
     //多条件查询
     List<UserModel> queryByParams(String param1, String param2, String param3);
+
+    UserModel addUser(UserModel userModel);
 }

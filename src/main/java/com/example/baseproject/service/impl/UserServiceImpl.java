@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -28,6 +29,16 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepostitory userRepostitory;
+
+
+    @Override
+    @Transactional
+    public UserModel addUser(UserModel userModel) {
+
+        UserModel user = userRepostitory.save(userModel);
+
+        return user;
+    }
 
     /**
      * 多条件查询
