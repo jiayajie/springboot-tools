@@ -1,5 +1,6 @@
 target/
 data/
+
 !.mvn/wrapper/maven-wrapper.jar
 
 ### STS ###
@@ -9,6 +10,7 @@ data/
 .project
 .settings
 .springBeans
+dump.rdb
 
 ### IntelliJ IDEA ###
 .idea
