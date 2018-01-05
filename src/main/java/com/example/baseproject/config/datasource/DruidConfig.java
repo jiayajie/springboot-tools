@@ -4,11 +4,15 @@ import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import com.alibaba.druid.support.spring.stat.DruidStatInterceptor;
 import org.springframework.aop.framework.autoproxy.BeanNameAutoProxyCreator;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.sql.DataSource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,6 +26,16 @@ import java.util.Map;
  */
 @Configuration
 public class DruidConfig {
+
+    @Value("${spring.datasource.type}")
+    private Class<? extends DataSource> dataSourceType;
+
+    @Bean
+    @ConfigurationProperties(prefix = "spring.datasource")
+    public DataSource dataSource() {
+        return DataSourceBuilder.create().type(dataSourceType).build();
+    }
+
 
     /**
      * 注册Servlet
@@ -53,7 +67,7 @@ public class DruidConfig {
 
         initParameters.put("loginUsername", "admin");   // 用户名
         initParameters.put("loginPassword", "admin");   // 密码
-        initParameters.put("resetEnable", "false");     // 禁用HTML页面上的“Reset All”功能
+        initParameters.put("resetEnable", "true");     // 禁用HTML页面上的“Reset All”功能
 
         /*存在共同时，deny优先于allow*/
 //        initParameters.put("allow", "127.0.0.1");     // IP白名单 (没有配置或者为空，则允许所有访问)
