@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  * @author dongyaofeng
  * @date 2018/1/5 15:47
  */
-@Configuration
+//@Configuration
 public class MoreDBConfig {
 
     @Value("${spring.datasource.type}")
