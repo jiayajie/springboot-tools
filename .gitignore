@@ -13,6 +13,7 @@ data/
 dump.rdb
 
 ### IntelliJ IDEA ###
+application-pro.yml
 .idea
 *.iws
 *.iml
