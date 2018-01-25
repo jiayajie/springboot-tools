@@ -2,6 +2,8 @@ package com.example.baseproject.controller;
 
 import com.example.baseproject.domain.ResultEntity;
 import com.example.baseproject.domain.UserModel;
+import com.example.baseproject.domain.es.LogsIndex;
+import com.example.baseproject.repostitory.LogsRepostitory;
 import com.example.baseproject.repostitory.UserRepostitory;
 import com.example.baseproject.service.UserService;
 import com.example.baseproject.utils.ResultUtil;
@@ -20,6 +22,9 @@ public class UserController {
     @Autowired
     /*为了方便直接注入 UserRepostitory*/
     private UserRepostitory userRepostitory;
+
+    @Autowired
+    private LogsRepostitory logsRepostitory;
 
     @Autowired
     private UserService userService;
@@ -47,6 +52,10 @@ public class UserController {
 
     @GetMapping("users/{id}")
     public ResultEntity<UserModel> findUserById(@PathVariable(name = "id") Integer id) {
+        LogsIndex logsIndex= new LogsIndex();
+        logsIndex.setId(1L);
+        logsIndex.setText("中华佛教");
+        logsRepostitory.save(logsIndex);
         UserModel one = userRepostitory.findById(id);
         return ResultUtil.success(one);
     }

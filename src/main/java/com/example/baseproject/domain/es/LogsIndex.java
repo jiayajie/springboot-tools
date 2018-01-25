@@ -16,7 +16,7 @@ public class LogsIndex implements Serializable {
     @Id
     private Long id;
 
-    @Field(index = FieldIndex.analyzed,/* analyzer = "ik",*/ store = true, type = FieldType.String)
+    @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)
     private String title;
 
     @Field(index = FieldIndex.analyzed, store = true, type = FieldType.String)

@@ -92,3 +92,17 @@
 # Require explicit names when deleting indices:
 #
 # action.destructive_requires_name: true
+#index:
+#  analysis:
+#    analyzer:
+#      ik:
+#          alias: [ik_analyzer]
+#          type: org.elasticsearch.index.analysis.IkAnalyzerProvider
+#      ik_max_word:
+#          type: ik
+#          use_smart: false
+#      ik_smart:
+#          type: ik
+#          use_smart: true
+#index.analysis.analyzer.ik.type: "ik"
+index.analysis.analyzer.default.type: ik
