@@ -24,6 +24,8 @@ public class PersonModel implements Serializable{
     private Integer age;
     @Column(length = 20)
     private String address;
+    @Column(length = 20)
+    private boolean isMan;
 
     public PersonModel(){
 
@@ -72,5 +74,13 @@ public class PersonModel implements Serializable{
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public boolean isMan() {
+        return isMan;
+    }
+
+    public void setMan(boolean man) {
+        isMan = man;
     }
 }

@@ -61,6 +61,7 @@ public interface PersonRepostitory extends JpaRepository<PersonModel, Long> {
      * @param age
      * @return
      */
+    @RestResource(path = "nameStartsWithIgnoringCase", rel = "nameStartsWithIgnoringCase")
     List<PersonModel> findByNameStartsWithIgnoringCase(@Param("name")String name ,@Param("age")int age);
 
     /**
@@ -69,6 +70,7 @@ public interface PersonRepostitory extends JpaRepository<PersonModel, Long> {
      * @param age
      * @return
      */
+    @RestResource(path = "nameAndAge", rel = "nameAndAge")
     List<PersonModel> findByNameAndAge(@Param("name")String name ,@Param("age")int age);
 
     /**
@@ -76,5 +78,14 @@ public interface PersonRepostitory extends JpaRepository<PersonModel, Long> {
      * @param name
      * @return
      */
+    @RestResource(path = "nameStartsWithOrderByAgeDesc", rel = "nameStartsWithOrderByAgeDesc")
     List<PersonModel> findByNameStartsWithOrderByAgeDesc(@Param("name") String name);
+
+    /**
+     * isman为ture的人
+     * boolean值查询
+     * @return
+     */
+    @RestResource(path = "manIsFalse", rel = "manIsFalse")
+    List<PersonModel> findByIsManIsFalse();
 }
