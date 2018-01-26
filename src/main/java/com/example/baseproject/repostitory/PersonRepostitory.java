@@ -6,6 +6,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 import org.springframework.data.rest.core.annotation.RestResource;
 
+import java.util.List;
+
 /**
  * @Company
  * @Discription
@@ -35,9 +37,44 @@ public interface PersonRepostitory extends JpaRepository<PersonModel, Long> {
     Is、Equals
     IsNot、Not
      */
-    @RestResource(path = "startWith", rel = "startWith")
-    PersonModel findById(@Param("id")Long id);
 
+    /**
+     * Spring Data这个小型的DSL依旧有其局限性，有时候通过方法名称表达预期的查询很烦琐，甚至无法实现。如果遇到这种情形的话，Spring Data能够让我们通过@Query注解来解决问题
+     * @param address
+     * @return
+     */
+    @RestResource(path = "addressContaining", rel = "addressContaining")
+    PersonModel findByAddressContaining(@Param("address")String address);
+
+    /**
+     * http://localhost:8080/person/search/nameStartsWith?name=董
+     * 查询name为开始包含董的数据
+     * @param name
+     * @return
+     */
     @RestResource(path = "nameStartsWith", rel = "nameStartsWith")
-    PersonModel findByNameStartsWith(@Param("name")String name);
+    List<PersonModel> findByNameStartsWith(@Param("name")String name);
+
+    /**
+     * 要处理String类型的属性时，如果需要忽略大小写则可以在方法签名中加入IgnoringCase，这样执行对比的时候就会不再考虑字符是大写还是小写
+     * @param name
+     * @param age
+     * @return
+     */
+    List<PersonModel> findByNameStartsWithIgnoringCase(@Param("name")String name ,@Param("age")int age);
+
+    /**
+     * 如果需要匹配多个添加则用And和Or连接
+     * @param name
+     * @param age
+     * @return
+     */
+    List<PersonModel> findByNameAndAge(@Param("name")String name ,@Param("age")int age);
+
+    /**
+     * 可以在方法名称的结尾处添加OrderBy，实现结果集排序
+     * @param name
+     * @return
+     */
+    List<PersonModel> findByNameStartsWithOrderByAgeDesc(@Param("name") String name);
 }
