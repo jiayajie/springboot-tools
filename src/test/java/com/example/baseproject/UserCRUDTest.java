@@ -1,15 +1,12 @@
 package com.example.baseproject;
 
-import com.example.baseproject.domain.UserModel;
-import com.example.baseproject.repostitory.UserRepostitory;
+import com.example.baseproject.modules.jpa.entity.UserModel;
+import com.example.baseproject.modules.jpa.repository.UserRepostitory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import java.util.Date;
-import java.util.List;
 
 /**
  * Created With IDEA.

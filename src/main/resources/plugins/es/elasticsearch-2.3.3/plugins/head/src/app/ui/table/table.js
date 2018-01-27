@@ -24,7 +24,7 @@
 			this.el = $.joey(this._main_template());
 			this.body = this.el.find(".uiTable-body");
 			this.headers = this.el.find(".uiTable-headers");
-			this.tools = this.el.find(".uiTable-tools");
+			this.tools = this.el.find(".uiTable-example");
 			this.attach( parent );
 		},
 		_data_handler: function(store) {
@@ -58,7 +58,7 @@
 		},
 		_main_template: function() {
 			return { tag: "DIV", id: this.id(), css: { width: this.config.width + "px" }, cls: this._baseCls, children: [
-				{ tag: "DIV", cls: "uiTable-tools" },
+				{ tag: "DIV", cls: "uiTable-example" },
 				{ tag: "DIV", cls: "uiTable-headers", onclick: this._headerClick_handler },
 				{ tag: "DIV", cls: "uiTable-body",
 					onclick: this._dataClick_handler,
