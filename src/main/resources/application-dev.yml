@@ -14,8 +14,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://39.106.127.25:3306/baseproject
-    username: root
-    password: admin
+    username: test
+    password:
     type:  com.alibaba.druid.pool.DruidDataSource  #默认使用TomcatJDBD DataSource
   jpa:
     hibernate:
