@@ -9,8 +9,8 @@ spring:
     primary:
       driver-class-name: com.mysql.jdbc.Driver
       url: jdbc:mysql://39.106.127.25:3306/baseproject
-      username: root
-      password: admin
+      username: test
+      password:
       filters: stat
       maxActive: 20
       initialSize: 1
@@ -62,7 +62,7 @@ spring:
   mail:
     host: smtp.qq.com
     username: 694381173@qq.com
-    password: devkhstnashubejd
+    password:
     default-encoding: utf-8
     properties:
       mail.smtp:
