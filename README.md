@@ -1,11 +1,11 @@
-#Spring Boot 学习笔记 
+# Spring Boot 学习笔记 
 
 * [Spring Boot -- GitHub](https://github.com/spring-projects/spring-boot)
 * [Spring 官网](https://spring.io/projects)
 * [Spring Boot 中文文档](http://blog.geekidentity.com/spring/spring_boot_translation/)
 * [Spring Boot 参考指南](http://oopsguy.com/documents/springboot-docs/1.5.4/index.html)
    
-###简介 
+### 简介 
 Spring Boot可以基于Spring轻松创建可以“运行”的、独立的、生产级的应用程序。 对Spring平台和第三方类库我们有自己看法和意见（约定大于配置），所以你最开始的时候不要感到奇怪。大多数Spring Boot应用程序需要很少的Spring配置
 您可以使用Spring Boot创建可以使用java -jar或传统 war 包部署启动的Java应用程序。
 
@@ -15,7 +15,7 @@ Spring Boot可以基于Spring轻松创建可以“运行”的、独立的、生
 * 提供大量项目中常见的一系列非功能特征（例如嵌入式服务器，安全性，指标，运行状况检查，外部化配置）。
 * 绝对没有代码生成，也不需要XML配置。
     
-###起步
+### 起步
 ```xml
 <!--指定项目parent为 spring-boot-starter-parent -->
 <parent>
