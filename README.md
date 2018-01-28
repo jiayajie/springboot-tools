@@ -6,7 +6,7 @@
 * [Spring Boot 参考指南](http://oopsguy.com/documents/springboot-docs/1.5.4/index.html)
    
 ### 简介 
-> Spring Boot可以基于Spring轻松创建可以“运行”的、独立的、生产级的应用程序。 对Spring平台和第三方类库我们有自己看法和意见（约定大于配置），所以你最开始的时候不要感到奇怪。大多数Spring Boot应用程序需要很少的Spring配置
+>  &emsp;&emsp;Spring Boot可以基于Spring轻松创建可以“运行”的、独立的、生产级的应用程序。 对Spring平台和第三方类库我们有自己看法和意见（约定大于配置），所以你最开始的时候不要感到奇怪。大多数Spring Boot应用程序需要很少的Spring配置
 您可以使用Spring Boot创建可以使用java -jar或传统 war 包部署启动的Java应用程序。
 
 #### 我们的主要目标是:
