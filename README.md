@@ -62,7 +62,7 @@ public class SampleController {
  > * 应用的基本配置用xml,比如:数据源、资源文件等
  > * 业务开发用注解,比如:Service中注入bean等
 #### Spring3.x到Spring4.x
-> 从Spring3.x开始提供了Java配置方式,使用Java配置方式可以更好的理解你配置的Bean,现在我们就处于这个时代,并且Spring4.x和Spring boot都推荐使用java配置的方式。
+> 从Spring3.x开始提供了Java配置方式,使用Java配置方式可以更好的理解你配置的Bean,并且Spring4.x和Spring boot都推荐使用java配置的方式。
 
 #### Spring 的 Java Config
 > Java配置是Spring4.x推荐的配置方式,可以完全替代xml配置。
@@ -71,7 +71,8 @@ public class SampleController {
 Spring的Java配置方式是通过 @Configuration 和 @Bean 这两个注解实现的
 > * @Configuration 作用于类上,相当于一个xml配置文件
 > * @Bean 作用于方法上,相当于xml配置中的 \<bean\>
-**事例**
+
+**示例**
 ```java
 @Configuration //通过该注解来表明该类是一个Spring的配置，相当于一个xml文件
 public class SpringConfig {
