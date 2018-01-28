@@ -90,14 +90,24 @@ public class UserService {
 }
 ```
 
-
+# Spring Boot 原理解析
+## spring start
+## spring 自动配置类
 
    
-## JPA
+# JPA
 > * Java Persistence API : 用于对象持久化的 API
 > * JPA是一个规范(java应用程序访问ORM框架的规范),不是框架
 > * hibernate,Spring data jpa 是JPA的实现
 ### Spring Data 
+> Spring data 的子项目学习 请点击[spring-data](https://github.com/dongyaofeng/spring-data)
+
+
+# 关于微服务
+## Spring Cloud介绍
+> Spring Cloud是一个基于Spring Boot实现的云应用开发工具，它为基于JVM的云应用开发中的配置管理、服务发现、断路器、智能路由、微代理、控制总线、全局锁、决策竞选、分布式会话和集群状态管理等操作提供了一种简单的开发方式。
+
+> 学习请点击[springcloud-example](https://github.com/dongyaofeng/springcloud-example)
 
 
 
