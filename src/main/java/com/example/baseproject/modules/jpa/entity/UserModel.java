@@ -7,12 +7,12 @@ import java.io.Serializable;
  * Created by dongyaofeng on 2017/12/24.
  */
 @Entity
+@Table(name = "bp_user")
 public class UserModel implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-
 
     @Column(length = 20, unique = true ,nullable = false) //唯一 不能为 null
     private String username;

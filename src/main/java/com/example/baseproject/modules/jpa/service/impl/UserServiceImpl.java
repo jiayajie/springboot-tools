@@ -34,9 +34,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public UserModel addUser(UserModel userModel) {
-
         UserModel user = userRepostitory.save(userModel);
-
         return user;
     }
 

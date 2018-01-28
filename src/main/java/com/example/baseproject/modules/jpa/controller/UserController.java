@@ -10,8 +10,12 @@ import com.example.baseproject.common.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
- * Created With IDEA.
+ * spring data jpa learn
+ * rest controller
+ * get post put delete
  *
  * @author dongyaofeng
  * @date 2018/1/2 15:37
@@ -24,17 +28,26 @@ public class UserController {
     private UserRepostitory userRepostitory;
 
     @Autowired
-    private LogsRepostitory logsRepostitory;
-
-    @Autowired
     private UserService userService;
 
+    /**
+     * 添加用户
+     *
+     * @param userModel
+     * @return user
+     */
     @PostMapping("users")
     public ResultEntity<UserModel> addUser(UserModel userModel) {
         UserModel user = userService.addUser(userModel);
         return ResultUtil.post(user);
     }
 
+    /**
+     * 删除用户
+     *
+     * @param id 用户id
+     * @return code 204
+     */
     @DeleteMapping("users/{id}")
     public ResultEntity<UserModel> delUser(@PathVariable(name = "id") Integer id) {
         userRepostitory.delete(id);
@@ -42,6 +55,13 @@ public class UserController {
     }
 
 
+    /**
+     * 修改 用户部分信息
+     *
+     * @param id
+     * @param userModel
+     * @return 修改字段的 json串
+     */
     @PutMapping("users/{id}")
     public ResultEntity<UserModel> updateUser(@PathVariable(name = "id", required = true) Integer id, UserModel userModel) {
         userModel.setId(id);
@@ -50,13 +70,27 @@ public class UserController {
     }
 
 
+    /**
+     * 根据id 查询user
+     *
+     * @param id 用户id
+     * @return user
+     */
     @GetMapping("users/{id}")
-    public ResultEntity<UserModel> findUserById(@PathVariable(name = "id") Integer id) {
-        LogsIndex logsIndex= new LogsIndex();
-        logsIndex.setId(1L);
-        logsIndex.setText("中华佛教");
-        logsRepostitory.save(logsIndex);
+    public ResultEntity<UserModel> findUserById(@PathVariable(name = "id", required = false) Integer id) {
+
         UserModel one = userRepostitory.findById(id);
         return ResultUtil.success(one);
+    }
+
+    /**
+     * 查询所有
+     *
+     * @return List<UserModel>
+     */
+    @GetMapping("/users")
+    public ResultEntity findAll() {
+        List<UserModel> all = userRepostitory.findAll();
+        return ResultUtil.success(all);
     }
 }
