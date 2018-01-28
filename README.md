@@ -1,6 +1,6 @@
 # Spring Boot 学习笔记 
 
-* [Spring Boot -- GitHub](https://github.com/spring-projects/spring-boot)
+* [Spring Boot GitHub](https://github.com/spring-projects/spring-boot)
 * [Spring 官网](https://spring.io/projects)
 * [Spring Boot 中文文档](http://blog.geekidentity.com/spring/spring_boot_translation/)
 * [Spring Boot 参考指南](http://oopsguy.com/documents/springboot-docs/1.5.4/index.html)
