@@ -2,6 +2,7 @@ package com.example.baseproject.modules.email.service.impl;
 
 import com.example.baseproject.common.enums.ResultEnum;
 import com.example.baseproject.advice.exception.AudienceException;
+import com.example.baseproject.common.utils.Constant;
 import com.example.baseproject.modules.email.service.MailService;
 import freemarker.template.Configuration;
 import freemarker.template.Template;
@@ -67,9 +68,8 @@ public class MailServiceImpl implements MailService {
      */
     @Override
     public void sendHtmlMail(String to, String subject, Map<String, Object> model) throws AudienceException {
-        int i = 1 / 0;
         try {
-            Template t = configuration.getTemplate("emailTemp.ftl");
+            Template t = configuration.getTemplate(Constant.EMAIL_PATH);
             String content = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
             MimeMessage message = sender.createMimeMessage();
 

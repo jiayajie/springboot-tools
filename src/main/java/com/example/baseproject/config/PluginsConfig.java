@@ -16,7 +16,7 @@ import java.io.*;
  */
 @Component
 @ConfigurationProperties(prefix = "plugins")
-public class InitPlugins {
+public class PluginsConfig {
     private Logger log = LoggerFactory.getLogger(this.getClass());
 
     private boolean es;

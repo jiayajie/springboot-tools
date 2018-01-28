@@ -10,7 +10,7 @@ import java.io.Serializable;
  * 创建带结构的索引
  */
 
-@Document(indexName = "logs", type = "log", shards = 5, replicas = 1)
+@Document(indexName = "bp_logs", type = "httplogs")
 public class LogsIndex implements Serializable {
 
     @Id

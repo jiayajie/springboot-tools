@@ -19,20 +19,11 @@ import java.util.Map;
  * @date 2017/12/26 15:54
  */
 @RestController
-public class TestController {
+public class MailController {
 
-
-    @Autowired
-    RedisTestService redisTestService;
 
     @Autowired
     MailService mailService;
-
-    @GetMapping("/redis")
-    public ResultEntity testRedis() {
-        redisTestService.test("test");
-        return ResultUtil.success();
-    }
 
 
     @GetMapping("/mail")
