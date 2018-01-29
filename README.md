@@ -90,6 +90,39 @@ public class UserService {
 }
 ```
 
+#### Spring Boot 获取参数
+```yaml
+#普通参数
+param: dongyapfeng
+
+#list或者数组参数
+listparam: p1,p2,p3
+
+#对象形式的参数
+user:
+  name: dongyaofeng
+  age: 18
+```
+> 接收方式
+```java
+
+/*第一方式种获取参数*/
+@Value("${param}")
+private String param;
+
+/*第二种方式获取参数(springboot 启动后会将所有的数据封装到Enviroment 对象中)*/
+@Autowired
+private Environment env;
+
+String param = env.getProperty("param");
+List array = env.getProperty("listparam", List.class);
+String username = env.getProperty("user.name");
+
+/*第三种方式获取参数  需要提供User get set */
+@ConfigurationProperties(prefix = "user")
+```
+
+
 # Spring Boot 原理解析
 ## spring start
 ## spring 自动配置类
