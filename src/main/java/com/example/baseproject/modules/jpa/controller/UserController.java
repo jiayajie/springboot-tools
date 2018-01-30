@@ -2,10 +2,10 @@ package com.example.baseproject.modules.jpa.controller;
 
 import com.example.baseproject.advice.annotation.RequestLimit;
 import com.example.baseproject.common.model.ResultEntity;
+import com.example.baseproject.common.utils.ResultUtil;
 import com.example.baseproject.modules.jpa.entity.UserModel;
 import com.example.baseproject.modules.jpa.repository.UserRepostitory;
 import com.example.baseproject.modules.jpa.service.UserService;
-import com.example.baseproject.common.utils.ResultUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
