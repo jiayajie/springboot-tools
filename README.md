@@ -168,7 +168,8 @@ class HelloController {
 
 > [更多starter 详细,请参考](http://blog.csdn.net/u014430366/article/details/53648139)
 
-## spring 自动配置类
+## Spring Boot 自动配置类
+>  自动配置 是springboot 的核心
 
    
 # JPA
