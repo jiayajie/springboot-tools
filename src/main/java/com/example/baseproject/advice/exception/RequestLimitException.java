@@ -1,0 +1,18 @@
+package com.example.baseproject.advice.exception;
+
+/**
+ * Created With IDEA.
+ * URL攻击 异常
+ * @author dongyaofeng
+ * @date 2018/1/30 13:26
+ */
+public class RequestLimitException extends Exception{
+
+    public RequestLimitException() {
+        super("HTTP请求超出设定的限制");
+    }
+
+    public RequestLimitException(String message) {
+        super(message);
+    }
+}

@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
  * @date 2017/8/7
  * @time 9:09
  */
-@ControllerAdvice
 @RestControllerAdvice //控制器增强
 public class GlobalExceptionHandler {
 
