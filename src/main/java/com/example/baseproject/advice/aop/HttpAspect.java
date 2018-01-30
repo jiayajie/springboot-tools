@@ -33,8 +33,8 @@ public class HttpAspect {
 
     private static Logger logger = LoggerFactory.getLogger(HttpAspect.class);
 
-//    @Pointcut("execution(public * com.example.baseproject.modules.elasticsearch.controller.LogsController.*(..))")
-    @Pointcut("execution(public * com.example.baseproject.controller..*(..))")
+    // 所有controller 里的方法
+    @Pointcut("execution(public * com.example.baseproject.modules..controller..*(..))")
     public void log() {
     }
 
