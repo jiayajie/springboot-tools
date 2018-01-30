@@ -35,8 +35,7 @@ public class HttpAspect {
 
     // 所有controller 里的方法
     @Pointcut("execution(public * com.example.baseproject.modules..controller..*(..))")
-    public void log() {
-    }
+    public void log() {}
 
     @Before("log()")
     public void doBefore(JoinPoint joinPoint) {
@@ -69,7 +68,7 @@ public class HttpAspect {
 
     }
 
-//    @After("log()")
+    @After("log()")
     public void doAfter() {
         logger.info("doAfter");
     }
@@ -79,7 +78,7 @@ public class HttpAspect {
         logger.info("response={}", String.valueOf(object));
     }
 
-//    @Around("log()")
+    @Around("log()")
     public void doAround(ProceedingJoinPoint pjp) throws Throwable {
         logger.info("Around={}", "进入环绕通知");
         pjp.proceed();//执行该方法
