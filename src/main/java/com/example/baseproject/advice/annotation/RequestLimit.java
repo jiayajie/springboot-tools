@@ -1,5 +1,7 @@
 package com.example.baseproject.advice.annotation;
 
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.elasticsearch.annotations.Document;
 
 import java.lang.annotation.*;
@@ -11,11 +13,12 @@ import java.lang.annotation.*;
  * @author dongyaofeng
  * @date 2018/1/30 13:15
  */
-@Target({ElementType.METHOD,ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.RUNTIME)
+//最高优先级
+@Order(Ordered.HIGHEST_PRECEDENCE)
 @Documented
-public @interface MyLog {
-
+public @interface RequestLimit {
     /**
      *
      * 允许访问的次数，默认值MAX_VALUE

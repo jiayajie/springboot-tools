@@ -24,7 +24,7 @@ import java.util.Map;
  * @author dongyaofeng
  * @date 2017/12/25 13:21
  */
-@Aspect
+//@Aspect
 @Component
 public class HttpAspect {
 

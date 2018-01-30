@@ -6,13 +6,13 @@ package com.example.baseproject.advice.exception;
  * @author dongyaofeng
  * @date 2018/1/30 13:26
  */
-public class RequestLimitException extends Exception{
+public class RequestLimitException extends RuntimeException{
 
     public RequestLimitException() {
         super("HTTP请求超出设定的限制");
     }
 
-    public RequestLimitException(String message) {
-        super(message);
+    public RequestLimitException(String localAddr) {
+        super(localAddr);
     }
 }

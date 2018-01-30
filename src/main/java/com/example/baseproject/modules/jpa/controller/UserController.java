@@ -1,9 +1,8 @@
 package com.example.baseproject.modules.jpa.controller;
 
+import com.example.baseproject.advice.annotation.RequestLimit;
 import com.example.baseproject.common.model.ResultEntity;
 import com.example.baseproject.modules.jpa.entity.UserModel;
-import com.example.baseproject.modules.elasticsearch.entity.LogsIndex;
-import com.example.baseproject.modules.elasticsearch.repository.LogsRepostitory;
 import com.example.baseproject.modules.jpa.repository.UserRepostitory;
 import com.example.baseproject.modules.jpa.service.UserService;
 import com.example.baseproject.common.utils.ResultUtil;
@@ -36,6 +35,7 @@ public class UserController {
      * @param userModel
      * @return user
      */
+    @RequestLimit
     @PostMapping("users")
     public ResultEntity<UserModel> addUser(UserModel userModel) {
         UserModel user = userService.addUser(userModel);
@@ -77,6 +77,7 @@ public class UserController {
      * @return user
      */
     @GetMapping("users/{id}")
+    @RequestLimit(count=10,time=10)
     public ResultEntity<UserModel> findUserById(@PathVariable(name = "id", required = false) Integer id) {
 
         UserModel one = userRepostitory.findById(id);

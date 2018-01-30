@@ -34,6 +34,14 @@ public class GlobalExceptionHandler {
             return ResultUtil.error(ep.getCode(), ep.getMessage());
         }
 
+        if (e instanceof RequestLimitException) {
+            RequestLimitException ep = (RequestLimitException) e;
+            logger.warn("ip: {} 恶意访问!!", ep.getMessage());
+            return new ResultEntity(304, "恶意访问!");
+        }
+
+
+
       /*  if( e instanceof  otherException) {
             //做一些事情
         }*/
