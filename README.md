@@ -124,7 +124,55 @@ String username = env.getProperty("user.name");
 
 
 # Spring Boot 原理解析
-## spring start
+## 常用注解
+> * @SpringBootApplication //Spring Boot项目的核心注解，主要目的是开启自动配置。
+> * @EnableAutoConfiguration  //开启是品牌spring boot 自动配置功能
+> * @ComponentScan  //组件扫描,并加入到程序上下文, 默认扫描该注解所在目录和同级目录的子目录
+> * @Configuration  //等同于spring的XML配置文件
+> * @Bean //用@Bean标注方法等价于XML中配置的bean
+> * @Import //用来导入其他配置类
+@ImportResource：用来加载xml配置文件
+
+## Starter pom
+>  Spring Boot为我们提供了简化企业级开发绝大多数场景的 Starter POM , 只要使用了应用场景所需要的 stater ,相关技术配置就会消除, 就可以得到spring boot 为我们提供的自动配置的bean ,因此，我们不要手动指定依赖，只需要添加一个 starter 即可，如下所示：
+ ```xml
+      <!--让我们来看看 REST 服务开发。我们可以使用像 Spring MVC、Tomcat 和 Jackson 这样的库，这对于单个应用程序来说是还是存在许多依赖
+            使用 starter 效果
+       -->
+   <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+```
+```java
+@RestController
+class HelloController {
+
+    @GetMapping("/users/{id}")
+    public User findUserByid(@PathVariable Integer id) {
+
+        return null;
+    }
+    @PostMapping("/order")
+    public void addEntity() {
+        System.out.println("订单post请求");
+    }
+}
+```
+
+```xml
+
+
+
+
+```
+
+Starter 不需要指定版本,Spring Boot 会自动选择合适的版本 ,仅需要指定 spring-boot-starter-parent-artifact 的版本。 如果之后您想要升级 Boot 库和依赖，只需在一个地方升级 Boot 版本即可，它将会处理其余部分
+
+
+
+> [更多starter 详细,请参考](http://blog.csdn.net/u014430366/article/details/53648139)
+
 ## spring 自动配置类
 
    
