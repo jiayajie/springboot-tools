@@ -1,4 +1,4 @@
-package com.example.baseproject.advice.exception;
+package com.example.baseproject.advice.exception.custom;
 
 /**
  * Created With IDEA.

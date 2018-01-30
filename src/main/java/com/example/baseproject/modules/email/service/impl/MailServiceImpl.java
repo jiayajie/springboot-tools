@@ -1,7 +1,6 @@
 package com.example.baseproject.modules.email.service.impl;
 
 import com.example.baseproject.common.enums.ResultEnum;
-import com.example.baseproject.advice.exception.AudienceException;
 import com.example.baseproject.common.utils.Constant;
 import com.example.baseproject.modules.email.service.MailService;
 import freemarker.template.Configuration;

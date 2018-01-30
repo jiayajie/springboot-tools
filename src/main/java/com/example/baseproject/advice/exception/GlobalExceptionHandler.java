@@ -1,13 +1,12 @@
 package com.example.baseproject.advice.exception;
 
+import com.example.baseproject.advice.exception.custom.RequestLimitException;
 import com.example.baseproject.common.model.ResultEntity;
 import com.example.baseproject.common.enums.ResultEnum;
 import com.example.baseproject.common.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 /**
@@ -28,23 +27,13 @@ public class GlobalExceptionHandler {
     public ResultEntity handle(Exception e) {
 
         //自定义异常
-        if (e instanceof AudienceException) {
-            AudienceException ep = (AudienceException) e;
-            logger.error("[AudienceException]: {}", e);
-            return ResultUtil.error(ep.getCode(), ep.getMessage());
-        }
 
         if (e instanceof RequestLimitException) {
             RequestLimitException ep = (RequestLimitException) e;
             logger.warn("ip: {} 恶意访问!!", ep.getMessage());
-            return new ResultEntity(304, "恶意访问!");
+            return new ResultEntity(ResultEnum.AUDIENCEEXCEPTION.getCode(), "恶意访问!");
         }
 
-
-
-      /*  if( e instanceof  otherException) {
-            //做一些事情
-        }*/
 
         logger.error("[SysError]={}", e);
         return ResultUtil.error(ResultEnum.SERVER_ERROR.getCode(), "system error !!!");

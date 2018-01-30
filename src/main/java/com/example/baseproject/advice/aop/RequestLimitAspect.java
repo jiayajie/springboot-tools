@@ -1,12 +1,10 @@
 package com.example.baseproject.advice.aop;
 
 import com.example.baseproject.advice.annotation.RequestLimit;
-import com.example.baseproject.advice.exception.RequestLimitException;
+import com.example.baseproject.advice.exception.custom.RequestLimitException;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
@@ -14,8 +12,6 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -27,7 +23,7 @@ import java.util.concurrent.TimeUnit;
  */
 @Aspect
 @Component
-public class RequestLimitContract {
+public class RequestLimitAspect {
 
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
