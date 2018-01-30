@@ -150,12 +150,12 @@ String username = env.getProperty("user.name");
 class HelloController {
 
     @GetMapping("/users/{id}")
-    public User findUserByid(@PathVariable Integer id) {
+    public User findUserById(@PathVariable Integer id) {
 
         return null;
     }
     @PostMapping("/order")
-    public void addEntity() {
+    public void createdOrder() {
         System.out.println("订单post请求");
     }
 }
