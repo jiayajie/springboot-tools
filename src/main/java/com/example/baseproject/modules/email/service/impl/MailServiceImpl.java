@@ -66,7 +66,7 @@ public class MailServiceImpl implements MailService {
      * @param model   模版数据  time ,message , username ,code ,from
      */
     @Override
-    public void sendHtmlMail(String to, String subject, Map<String, Object> model) throws AudienceException {
+    public void sendHtmlMail(String to, String subject, Map<String, Object> model) {
         try {
             Template t = configuration.getTemplate(Constant.EMAIL_PATH);
             String content = FreeMarkerTemplateUtils.processTemplateIntoString(t, model);
@@ -82,7 +82,6 @@ public class MailServiceImpl implements MailService {
             logger.info("用户:{} 邮件已发送 ", to);
         } catch (Exception e) {
             logger.error("用户:{} 邮件发送异常:{}", to, e.getMessage());
-            throw new AudienceException(ResultEnum.SERVER_ERROR);
         }
     }
 
