@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script type="text/javascript" src="js/jquery-2.0.3.js"></script>
+<style>
+    .main{
+        vertical-align: top;
+    }
+</style>
+<script>
+    function loginWeibo(){
+        $.post("/weibo/toAuth",function(d){
+            if(d != null){
+                window.open(d,"_blank");
+            }
+        });
+    }
+
+    function loginQQ(){
+        $.post("/tencent/toAuth",function(d){
+            if(d != null){
+                window.open(d,"_blank");
+            }
+        });
+    }
+</script>
+<body>
+<div class="main">
+    <input type="hidden" id="qq" value="">
+    <a  href="#" onClick="loginQQ()">QQ登录</a>
+
+    <br><br>
+    <hr>
+    <br>
+
+    <input type="hidden" id="weibo" value="">
+    <a href="#" onClick="loginWeibo()">微博登录</a>
+</div>
+</body>
+</html>
