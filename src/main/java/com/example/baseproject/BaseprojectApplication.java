@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-//start
+//start1
 @SpringBootApplication
 public class BaseprojectApplication  extends SpringBootServletInitializer{
 
