@@ -6,6 +6,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.StringRedisTemplate;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.JedisCommands;
@@ -35,9 +36,7 @@ import redis.clients.jedis.JedisCommands;
  * 正确姿势
  */
 @Service
-
-@EnableAsync
-public class DistributedLockImpl implements DistributedLock {
+public class DistributedLockImpl {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
@@ -46,7 +45,6 @@ public class DistributedLockImpl implements DistributedLock {
     /**
      * 获取锁
      */
-    @Override
     public boolean acquire() {
 
 //        这两行需要有 原子性 ,用下面代码替换
@@ -66,13 +64,15 @@ public class DistributedLockImpl implements DistributedLock {
                  * 第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。
                  * 第五个为time，与第四个参数相呼应，代表key的过期时间。
                  */
-                return commands.set(redis_lock, "传的是requestId", "NX", "PX", 1000 * 10);
+                return commands.set(redis_lock, "传的是requestId", "NX", "PX", 1000 * 30);
             }
         });
 
-        String andSet = stringRedisTemplate.opsForValue().getAndSet(redis_lock, "10002");
+        System.out.println(execute);
 
-        System.out.println(andSet);
+//        String andSet = stringRedisTemplate.opsForValue().getAndSet(redis_lock, "10002");
+//
+//        System.out.println(andSet);
 
 
         return false;
@@ -81,8 +81,47 @@ public class DistributedLockImpl implements DistributedLock {
     /**
      * 释放锁
      */
-    @Override
     public void release() {
+        stringRedisTemplate.delete(redis_lock);
+    }
+
+
+    public void task_1() {
+        stringRedisTemplate.opsForValue().set("10001", "100");
+        System.out.println("10001  100  ok !!!");
+    }
+
+    @Async("myAsync")
+    public void task_2() {
+        Long increment = stringRedisTemplate.opsForValue().increment("10001", -1);
+        System.out.println("task_2:" + increment + " ThreadName: " + Thread.currentThread().getName());
+    }
+
+    @Async("myAsync")
+    public void task_3() {
+        Long increment = stringRedisTemplate.opsForValue().increment("10001", -1);
+        System.out.println("task_3: " + increment);
+
+    }
+
+    @Async("myAsync")
+    public void task_4() {
+        Long increment = stringRedisTemplate.opsForValue().increment("10001", -1);
+        System.out.println("task_4: " + increment);
+
+    }
+
+    @Async("myAsync")
+    public void task_5() {
+        Long increment = stringRedisTemplate.opsForValue().increment("10001", -1);
+        System.out.println("task_5: " + increment);
+
+    }
+
+    @Async("myAsync")
+    public void task_6() {
+        Long increment = stringRedisTemplate.opsForValue().increment("10001", -1);
+        System.out.println("task_6: " + increment);
 
     }
 }
