@@ -30,11 +30,17 @@ spring:
 #          data: ./elasticsearch/data
 
   redis:  #单机版
-    port: 6379
-    host: 39.106.127.25
-    database: 0
-
-
+#    port: 6379
+#    host: 39.106.127.25
+#    database: 0
+    pool:
+      max-active: 8
+      max-wait: -1
+      max-idle: 8
+      min-idle: 0
+    sentinel:
+      master: redis
+      nodes: 39.106.127.25:26379
   mail:
     host: smtp.qq.com
     username: 694381173@qq.com
