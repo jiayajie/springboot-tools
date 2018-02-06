@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
 
 /**
  * redis缓存配置文件
- *
+ * http://blog.csdn.net/MOTUI/article/details/52903397?locationNum=5&fps=1
  * @author dongyaofeng
  * @date 2017/11/17 13:04
  */
