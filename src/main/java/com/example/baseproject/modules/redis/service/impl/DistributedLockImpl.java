@@ -41,6 +41,8 @@ public class DistributedLockImpl implements DistributedLock {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
 
+    private final String redis_lock = "REDIS_LOCK";
+
     /**
      * 获取锁
      */
@@ -52,10 +54,11 @@ public class DistributedLockImpl implements DistributedLock {
 //        stringRedisTemplate.expire("10001", 5000, TimeUnit.MILLISECONDS);
 
 
-        stringRedisTemplate.execute(new RedisCallback<Object>() {
+        Object execute = stringRedisTemplate.execute(new RedisCallback<Object>() {
             @Override
             public Object doInRedis(RedisConnection redisConnection) throws DataAccessException {
                 JedisCommands commands = (JedisCommands) redisConnection.getNativeConnection();
+
                 /*
                  * 第一个为key，我们使用key来当锁，因为key是唯一的。
                  * 第二个为value，传的是requestId 主要是在解锁的时候就可以有依据
@@ -63,11 +66,12 @@ public class DistributedLockImpl implements DistributedLock {
                  * 第四个为expx，这个参数我们传的是PX，意思是我们要给这个key加一个过期的设置，具体时间由第五个参数决定。
                  * 第五个为time，与第四个参数相呼应，代表key的过期时间。
                  */
-                return commands.set("10001", "传的是requestId", "NX", "PX", 10000);
+                return commands.set(redis_lock, "传的是requestId", "NX", "PX", 1000 * 10);
             }
         });
 
-        String andSet = stringRedisTemplate.opsForValue().getAndSet("10002", "10002");
+        String andSet = stringRedisTemplate.opsForValue().getAndSet(redis_lock, "10002");
+
         System.out.println(andSet);
 
 
