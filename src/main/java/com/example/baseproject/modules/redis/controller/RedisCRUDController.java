@@ -2,15 +2,12 @@ package com.example.baseproject.modules.redis.controller;
 
 import com.example.baseproject.common.model.ResultEntity;
 import com.example.baseproject.common.utils.ResultUtil;
+import com.example.baseproject.modules.jpa.entity.UserModel;
+import com.example.baseproject.modules.jpa.repository.UserRepostitory;
+import com.example.baseproject.modules.redis.service.RedisAnnoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.context.WebApplicationContext;
-import org.springframework.web.method.HandlerMethod;
-import org.springframework.web.servlet.DispatcherServlet;
-import org.springframework.web.servlet.mvc.condition.PatternsRequestCondition;
-import org.springframework.web.servlet.mvc.method.RequestMappingInfo;
-import org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.*;
@@ -27,6 +24,13 @@ import java.util.concurrent.TimeUnit;
 public class RedisCRUDController {
     @Autowired
     private StringRedisTemplate stringRedisTemplate;
+
+
+    @Autowired
+    private RedisAnnoService redisAnnoService;
+
+    @Autowired
+    private UserRepostitory userRepostitory;
 
     /**
      * 获取所有key - value
@@ -94,4 +98,62 @@ public class RedisCRUDController {
     }
 
 
+    /** #################################### 以下是通过注解的方式记录 缓存  ######################################## */
+
+
+    /**
+     * 测试 参数 为 mapList  结果为 mapList  接口
+     *
+     * @param id 前台 参数
+     * @return mapList
+     */
+    @GetMapping("/anno/{id}")
+    public ResultEntity redisCache(@PathVariable String id) {
+        Map<String, List<String>> mapList = new LinkedHashMap<>();
+
+        List<String> list = new ArrayList<>();
+        list.add(id);
+        mapList.put("这是来自前台URL上的参数", list);
+
+        //获取线程名称
+        String threadName = Thread.currentThread().getName();
+
+        //第一次走后台 , 第二次走缓存
+        Map<String, List<String>> stringListMap = redisAnnoService.addCacheByAnno(mapList);
+
+        //再次获取线程名称
+        String threadName_back = Thread.currentThread().getName();
+
+        String msg = "The Data from Mysql";
+        if (threadName.equals(threadName_back)) {
+            msg = "The Data from Redis";
+        }
+        return new ResultEntity(200, msg, stringListMap);
+    }
+
+
+    /**
+     * 测试 参数 为 Object  结果为 Object  接口
+     */
+    @GetMapping("/anno/users/{id}")
+    public ResultEntity redisCache4Obj(@PathVariable Integer id) {
+
+        //获取线程名称
+        String threadName = Thread.currentThread().getName();
+
+        //获得User 数据 作为Key
+        UserModel userModel = userRepostitory.findById(id);
+
+        //第一次走后台 , 第二次走缓存
+        UserModel obj = redisAnnoService.addCacheByAnno(userModel);
+
+        //再次获取线程名称
+        String threadName_back = Thread.currentThread().getName();
+
+        String msg = "The Data from Mysql";
+        if (threadName.equals(threadName_back)) {
+            msg = "The Data from Redis";
+        }
+        return new ResultEntity(200, msg, obj);
+    }
 }
