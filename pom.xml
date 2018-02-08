@@ -129,6 +129,12 @@
 			<artifactId>druid</artifactId>
 			<version>${druid.version}</version>
 		</dependency>
+		<!-- spring-boot-actuator 监控-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-actuator</artifactId>
+			<version>1.5.9.RELEASE</version>
+		</dependency>
 
 		<!--mail-->
 		<dependency>
