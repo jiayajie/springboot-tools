@@ -159,27 +159,27 @@ public class OrderServiceImpl implements OrderService {
                 //打印 应答
                 dumpResponse(response);
 
-                File folder = new File(path);
-                if (!folder.exists()) {
-                    folder.setWritable(true);
-                    folder.mkdirs();
-                }
-
-                // 需要修改为运行机器上的路径
-                //细节细节细节
-                String qrPath = String.format(path + "/qr-%s.png", response.getOutTradeNo());
-                String qrFileName = String.format("qr-%s.png", response.getOutTradeNo());
-                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
-
-                File targetFile = new File(path, qrFileName);
-                try {
-                    FTPUtil.uploadFile(Lists.newArrayList(targetFile));
-                } catch (IOException e) {
-                    logger.error("上传二维码异常", e);
-                }
-                logger.info("qrPath:" + qrPath);
-                String qrUrl = "http://img.happymmall.com/" + targetFile.getName();
-                resultMap.put("qrUrl", qrUrl);
+//                File folder = new File(path);
+//                if (!folder.exists()) {
+//                    folder.setWritable(true);
+//                    folder.mkdirs();
+//                }
+//
+//                // 需要修改为运行机器上的路径
+//                //细节细节细节
+//                String qrPath = String.format(path + "/qr-%s.png", response.getOutTradeNo());
+//                String qrFileName = String.format("qr-%s.png", response.getOutTradeNo());
+//                ZxingUtils.getQRCodeImge(response.getQrCode(), 256, qrPath);
+//
+//                File targetFile = new File(path, qrFileName);
+//                try {
+//                    FTPUtil.uploadFile(Lists.newArrayList(targetFile));
+//                } catch (IOException e) {
+//                    logger.error("上传二维码异常", e);
+//                }
+//                logger.info("qrPath:" + qrPath);
+//                String qrUrl = "http://39.106.127.25/" + targetFile.getName();
+//                resultMap.put("qrUrl", qrUrl);
                 return ResultUtil.success(resultMap);
             case FAILED:
                 logger.error("支付宝预下单失败!!!");

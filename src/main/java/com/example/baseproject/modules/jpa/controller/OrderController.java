@@ -4,6 +4,7 @@ import com.example.baseproject.common.model.ResultEntity;
 import com.example.baseproject.modules.jpa.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,9 +20,9 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
-    @GetMapping("pay")
-    public ResultEntity pay(Long orderNo) {
-        ResultEntity pay = orderService.pay(1L, 2, "/");
+    @GetMapping("pay/{userId}/{orderNo}")
+    public ResultEntity pay(@PathVariable Long orderNo, @PathVariable Integer userId) {
+        ResultEntity pay = orderService.pay(orderNo, userId, "/code");
         return pay;
     }
 }

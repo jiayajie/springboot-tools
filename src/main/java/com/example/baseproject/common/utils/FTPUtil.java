@@ -79,6 +79,12 @@ public class FTPUtil {
     }
 
 
+    public static void main(String[] args) {
+        FTPUtil ftpUtil = new FTPUtil(ftpIp,21,ftpUser,ftpPass);
+        System.out.println(ftpUtil);
+    }
+
+
 
 
 
