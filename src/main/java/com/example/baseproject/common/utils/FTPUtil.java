@@ -10,15 +10,15 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Created by geely
+ * Created by dongyaofeng
  */
 public class FTPUtil {
 
     private static  final Logger logger = LoggerFactory.getLogger(FTPUtil.class);
 
-    private static String ftpIp = "";
-    private static String ftpUser = "";
-    private static String ftpPass = "";
+    private static String ftpIp = "39.106.127.25";
+    private static String ftpUser = "ftpuser";
+    private static String ftpPass = "123456";
 
     public FTPUtil(String ip,int port,String user,String pwd){
         this.ip = ip;
