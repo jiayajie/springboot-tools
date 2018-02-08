@@ -61,6 +61,23 @@ logging:
     root : info
     org.springframework.web: debug
     com.example.baseproject.service: info
+management:
+  security:
+  enabled: false
+  port: 8088 #管理端口
+  context-path: /monitor #actuator的访问路径
+endpoints:
+  shutdown:
+  actuator:
+    enabled: true
+info:
+   app:
+   name: spring-boot-actuator
+   version: 1.0.0
+
+
+
+
 
 
 
