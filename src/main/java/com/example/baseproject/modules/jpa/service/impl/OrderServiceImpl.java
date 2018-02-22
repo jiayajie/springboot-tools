@@ -10,12 +10,14 @@ import com.alipay.demo.trade.model.result.AlipayF2FPrecreateResult;
 import com.alipay.demo.trade.service.AlipayTradeService;
 import com.alipay.demo.trade.service.impl.AlipayTradeServiceImpl;
 import com.alipay.demo.trade.utils.ZxingUtils;
+import com.example.baseproject.common.Const;
 import com.example.baseproject.common.model.ResultEntity;
 import com.example.baseproject.common.utils.BigDecimalUtil;
 import com.example.baseproject.common.utils.FTPUtil;
 import com.example.baseproject.common.utils.ResultUtil;
 import com.example.baseproject.modules.jpa.entity.Order;
 import com.example.baseproject.modules.jpa.entity.OrderItem;
+import com.example.baseproject.modules.jpa.entity.PayInfo;
 import com.example.baseproject.modules.jpa.repository.OrderItemRepostitory;
 import com.example.baseproject.modules.jpa.repository.OrderRepostitory;
 import com.example.baseproject.modules.jpa.service.OrderService;
@@ -27,10 +29,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author dongyaofeng
@@ -208,4 +207,68 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
+    /**
+     * 支付回调处理
+     *
+     * @param params 回调参数
+     * @return
+     */
+    @Override
+    public ResultEntity aliCallback(Map<String, String> params) {
+
+        //订单号
+        Long orderNo = Long.valueOf(params.get("out_trage_no"));
+
+        //支付宝交易号
+        String tradeNo = params.get("trade_no");
+
+        //交易状态
+        String tradeStatus = params.get("trade_status");
+
+        Order order = orderRepostitory.findByOrderNo(orderNo);
+
+        if (order == null) {
+            return ResultUtil.error(400, "非法订单,回调忽略");
+        }
+
+        if (order.getStatus() >= Const.OrderStatusEnum.PAID.getCode()) {
+            return ResultUtil.success("支付宝重复调用");
+        }
+
+        //支付成功 修改订单状态
+        if (Const.AlipayCallback.TRADE_STATUS_TRADE_SUCCESS.equals(tradeStatus)) {
+
+            //修改订单状态
+            String gmt_payment = params.get("gmt_payment");
+            order.setPaymentTime(new Date());
+            order.setStatus(Const.OrderStatusEnum.PAID.getCode());
+            orderRepostitory.saveAndFlush(order);
+
+        }
+
+        /**
+         * 分装 订单 状态信息
+         */
+        PayInfo payInfo = new PayInfo();
+        payInfo.setUserId(order.getUserId());
+        payInfo.setOrderNo(order.getOrderNo());
+        payInfo.setPayPlatform(Const.PayPlatformEnum.ALIPAY.getCode());
+        payInfo.setPlatformNumber(tradeNo);
+        payInfo.setPlatformStatus(tradeStatus);
+
+        return ResultUtil.success();
+    }
+
+    @Override
+    public ResultEntity queryOrderPayStatus(Integer id, Long orderNo) {
+        Order order = orderRepostitory.findByUserIdAndOrderNo(id, orderNo);
+        if (order == null) {
+            return ResultUtil.error(400, "没有该订单");
+        }
+
+        if (order.getStatus() >= Const.OrderStatusEnum.PAID.getCode()) {
+            return ResultUtil.success();
+        }
+        return ResultUtil.error(400, "error");
+    }
 }

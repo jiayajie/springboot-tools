@@ -14,4 +14,6 @@ import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 public interface OrderRepostitory extends JpaRepository<Order, Long> {
 
     Order findByUserIdAndOrderNo(Integer userId, Long orderNo);
+
+    Order findByOrderNo(Long orderNo);
 }

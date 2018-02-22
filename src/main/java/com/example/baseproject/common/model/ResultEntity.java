@@ -1,11 +1,17 @@
 package com.example.baseproject.common.model;
 
+import com.example.baseproject.common.enums.ResultEnum;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 import java.io.Serializable;
 
 /**
  * Created by Administrator on 2017/12/25.
  * MVC 返回数据据实体封装
  */
+@JsonSerialize(include =  JsonSerialize.Inclusion.NON_NULL)
+//保证序列化json的时候,如果是null的对象,key也会消失
 public class ResultEntity<T> implements Serializable {
 
     /**
@@ -24,6 +30,11 @@ public class ResultEntity<T> implements Serializable {
     private T data;
 
     public ResultEntity() {
+    }
+
+    public ResultEntity(Integer code, T data) {
+        this.code = code;
+        this.data = data;
     }
 
     public ResultEntity(Integer code, String msg) {
@@ -59,5 +70,10 @@ public class ResultEntity<T> implements Serializable {
 
     public void setData(T data) {
         this.data = data;
+    }
+
+    @JsonIgnore
+    public boolean isSuccess() {
+        return this.code == ResultEnum.OK.getCode();
     }
 }
