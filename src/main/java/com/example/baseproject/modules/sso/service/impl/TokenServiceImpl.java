@@ -6,6 +6,7 @@ import com.example.baseproject.modules.sso.service.TokenService;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import javax.mail.Session;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @author dongyaofeng
  * @date 2018/2/10 21:58
  */
+@Service
 public class TokenServiceImpl implements TokenService {
 
     @Autowired
