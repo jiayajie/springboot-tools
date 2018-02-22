@@ -1,13 +1,17 @@
 package com.example.baseproject.modules.sso.controller;
 
 import com.example.baseproject.common.model.ResultEntity;
+import com.example.baseproject.common.utils.CookieUtil;
 import com.example.baseproject.common.utils.ResultUtil;
 import com.example.baseproject.modules.jpa.entity.UserModel;
 import com.example.baseproject.modules.sso.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 单点登录
@@ -26,22 +30,25 @@ public class LoginController {
     @Autowired
     private TokenService tokenService;
 
+    @Autowired
+    private StringRedisTemplate redisTemplate;
+
     /**
      * 通过 token 获取用户信息
      */
-    @GetMapping("/")
-    public ResultEntity signIn(@CookieValue("SESSIONID") String token, String username) {
+    @GetMapping("/login")
+    public ResultEntity signIn(@CookieValue("SESSIONID") String token, HttpServletResponse response, String username) {
 
-        //第一次登录
-        if (token == null) {
-            System.out.println("正在登录....");
+        //假如登录成功....
+        UserModel userModel = new UserModel();
+        userModel.setUsername("dongyaofeng");
+        userModel.setAge(21);
 
-//            UserModel userModel = new UserModel();
+        //写回cookie 到 浏览器
+        CookieUtil.writeLoginToken(response, token);
 
-//            tokenService.saveTokenToRedis(username);
-            return ResultUtil.success();
-        }
-
+        //存储 sesion信息 到 redis
+        redisTemplate.opsForValue().set("token","" );
 
         return null;
     }
