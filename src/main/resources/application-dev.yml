@@ -54,7 +54,7 @@ spring:
 #视图模型解析,静态资源后缀配置
   mvc:
     view:
-      prefix: /static/
+#      prefix: /static/
       suffix: .html
 
 logging:
