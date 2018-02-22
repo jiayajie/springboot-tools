@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  * 多数据源源配置  (Mysql)
  */
+//@PropertySource(value = {"db.properties"}, ignoreResourceNotFound = false)  //加载自定义配置文件 可用 @valeu 注解 接收
 //@Configuration
 //@EnableJpaRepositories(basePackages = "com.example.baseproject.repostitory")  /*使用SpringData JPA*/
 public class MysqlDBConfig {
