@@ -7,6 +7,8 @@ import com.example.baseproject.modules.jpa.entity.UserModel;
 import com.example.baseproject.modules.jpa.repository.UserRepostitory;
 import com.example.baseproject.modules.jpa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +21,7 @@ import java.util.List;
  * @author dongyaofeng
  * @date 2018/1/2 15:37
  */
-@RestController
+@Controller
 public class UserController {
 
     @Autowired
@@ -93,5 +95,11 @@ public class UserController {
     public ResultEntity findAll() {
         List<UserModel> all = userRepostitory.findAll();
         return ResultUtil.success(all);
+    }
+
+    @RequestMapping("hello")
+    public String index(ModelMap modelMap){
+        modelMap.addAttribute("name", "guoxiaojing");
+        return "hello";
     }
 }
