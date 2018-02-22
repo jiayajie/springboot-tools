@@ -51,6 +51,11 @@ spring:
         auth: trun
         starttls.enable: true
         starttls.required: true
+#视图模型解析,静态资源后缀配置
+  mvc:
+    view:
+      prefix: /static/
+      suffix: .html
 
 logging:
 
