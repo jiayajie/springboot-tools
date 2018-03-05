@@ -30,9 +30,9 @@ spring:
 #          data: ./elasticsearch/data
 
   redis:  #单机版
-#    port: 6379
-#    host: 39.106.127.25
-#    database: 0
+    port: 6379
+    host: 39.106.127.25
+    database: 0
     pool: #集群版
       max-active: 8
       max-wait: -1
@@ -56,7 +56,12 @@ spring:
     view:
 #      prefix: /static/
       suffix: .html
-
+  #mongodb 配置
+    data:
+      mongodb:
+        host: 127.0.0.1
+        port: 27017
+        database: mydb
 logging:
 
   path: #/var/logs          # 在/var/logs目录下生成spring.log文件

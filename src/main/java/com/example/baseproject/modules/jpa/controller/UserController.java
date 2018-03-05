@@ -7,9 +7,12 @@ import com.example.baseproject.modules.jpa.entity.UserModel;
 import com.example.baseproject.modules.jpa.repository.UserRepostitory;
 import com.example.baseproject.modules.jpa.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.util.UriComponents;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.List;
 
@@ -97,9 +100,25 @@ public class UserController {
         return ResultUtil.success(all);
     }
 
-    @RequestMapping("hello")
+    /**
+     * 设置请求返回数据格式
+     * 同consumes类似，produces也可以使用“!”。同样建议使用MediaType中的常量。
+     * 同consumes类似，方法级别的produces会覆盖类级别的媒体类型
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value = "hello", consumes = "application/json", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public String index(ModelMap modelMap){
         modelMap.addAttribute("name", "guoxiaojing");
         return "hello";
     }
+
+    public static void main(String [] args){
+        UriComponents uriComponents = UriComponentsBuilder.newInstance()
+                .scheme("http").host("example.com").path("/hotels/{hotel}/bookings/{booking}").build()
+                .expand("42", "21")
+                .encode();
+        System.out.println(uriComponents);
+    }
+
 }

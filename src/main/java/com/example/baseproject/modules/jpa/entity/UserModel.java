@@ -20,7 +20,7 @@ public class UserModel implements Serializable {
     @Column(length = 20)
     private String passworld;
 
-    @Column(length = 3)
+    @Column(length = 20)
     private Integer age;
 
     @Column(length = 20)
